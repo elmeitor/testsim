@@ -6,12 +6,12 @@ fi
 
 sampleid=$1
 
-echo "Running FastQC..."
+echo "Ejecutando FastQC..."
 mkdir -p out/fastqc
 fastqc -o out/fastqc data/${sampleid}_?.fastq.gz
 echo
 
-echo "Running cutadapt..."
+echo "Ejecutando cutadapt..."
 mkdir -p log/cutadapt
 mkdir -p out/cutadapt
 cutadapt \
@@ -23,17 +23,17 @@ cutadapt \
     > log/cutadapt/${sampleid}.log
 echo
 
-echo "Running STAR index..."
-mkdir -p res/genome/star_index
-STAR \
-    --runThreadN 4 \
-    --runMode genomeGenerate \
-    --genomeDir res/genome/star_index/ \
-    --genomeFastaFiles res/genome/ecoli.fasta \
-    --genomeSAindexNbases 9
-echo
+#echo Running STAR index..."
+#mkdir -p res/genome/star_index
+#STAR \
+#    --runThreadN 4 \
+#    --runMode genomeGenerate \
+#    --genomeDir res/genome/star_index/ \
+#    --genomeFastaFiles res/genome/ecoli.fasta \
+#    --genomeSAindexNbases 9
+#echo
 
-echo "Running STAR alignment..."
+echo "Ejecutando STAR alignment..."
 mkdir -p out/star/${sampleid}
 STAR \
     --runThreadN 4 \
